@@ -49,7 +49,7 @@ export default function Navbar() {
                 },
                     {
                         y: 0,
-                        delay: 0.3,
+                        delay: 0.2,
                         opacity: 1,
                         duration: 0.4,
                         stagger: 0.2,
