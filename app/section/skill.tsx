@@ -69,6 +69,7 @@ export default function Skill() {
 
         if (!sectionRef.current || !trackRef.current) return;
 
+
         const ctx = gsap.context(() => {
             const track = trackRef.current;
 

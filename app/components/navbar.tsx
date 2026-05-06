@@ -11,6 +11,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
+            console.log(window.scrollY)
             if (window.scrollY > 12480) {
                 setIsDarkBg(false);
             } else if (window.scrollY > 8400) {
