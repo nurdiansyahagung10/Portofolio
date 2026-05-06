@@ -140,7 +140,7 @@ export default function About() {
         <section className="bg-stone-950">
             <div ref={elementRef} className="bg-white relative w-full overflow-hidden -translate-y-50 mb-18 ">
                 <div className="bg-white relative w-full overflow-hidden">
-                    <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-10 opacity-30" viewBox="0 0 800 580">
+                    <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-3 opacity-30" viewBox="0 0 800 580">
                         <path
                             ref={pathRef}
                             d="M800 50 Q200 50 600 300 T0 640 "
@@ -152,7 +152,7 @@ export default function About() {
                     </svg>
                     <div id="about" className="w-full overflow-hidden">
 
-                        <div ref={textCarousel} className="flex pt-20  whitespace-nowrap text-[9rem] gap-10">
+                        <div ref={textCarousel} className="flex md:pt-20 pt-10  whitespace-nowrap md:text-[9rem] text-[4rem] gap-10">
 
                             {[...Array(6)].map((_, i) => (
                                 <div key={i} className="flex gap-10">
