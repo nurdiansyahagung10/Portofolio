@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
 import TextAnimate from "./textAnimate";
 import ButtonAnimate from "./buttonAnimate";
+import Image from "next/image";
 
 const playFair = Playfair_Display({
     subsets: ['latin'],
@@ -23,11 +24,11 @@ export default function Hero({ ready }: Props) {
     const sectionRef = useRef<HTMLDivElement>(null);
 
     const images = [
-        "https://cdn.dribbble.com/userupload/45607567/file/still-bced1a61d5b245ca788bffb7b59c1c18.png?format=webp&resize=800x600&vertical=center",
-        "https://cdn.dribbble.com/userupload/16785430/file/original-0d8a35e997917373d44cac1b72162b04.png?format=webp&resize=640x480&vertical=center",
-        "https://cdn.dribbble.com/userupload/44284443/file/184d894c2029598ed0325b81b6ea4259.png?format=webp&resize=640x480&vertical=center",
-        "https://cdn.dribbble.com/userupload/17576958/file/still-18a1ab22c23b9d12ae94ce419c221ff3.png?format=webp&resize=640x480&vertical=center",
-        "https://cdn.dribbble.com/userupload/45416575/file/3ae95cf605d8069562efd537edd560ba.png?format=webp&resize=640x480&vertical=center",
+        "gs.png",
+        "sf.png",
+        "asd.png",
+        "sdf.png",
+        "as.png"
     ];
 
 
@@ -157,7 +158,7 @@ export default function Hero({ ready }: Props) {
                                     key={i}
                                     className={`min-w-55 imageup  translate-y-100 opacity-0 group transition-[padding] shadow-none duration-300  bg-stone-100  h-100 rounded-4xl overflow-hidden `}
                                 >
-                                    <img src={src} className="w-full object-cover"></img>
+                                    <Image alt="Rasya sitting" width={800} height={800} decoding="async" data-nimg="1" className="w-full scale-110 mt-5 h-auto object-cover" src={`/images/head/${src}`} style={{ color: " transparent" }} />
                                 </div>
                             ))}
                         </div>

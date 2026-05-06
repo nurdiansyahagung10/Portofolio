@@ -13,11 +13,11 @@ export default function Footer() {
     const logos = [
         { src: "/images/logos/chat-gpt (1).png", top: "0%", left: "53%" },
         { src: "/images/logos/cloud.png", top: "7%", left: "97%" },
-        { src: "/images/logos/figma.png", top: "14%", left: "16%" },
+        { src: "/images/logos/f.png", top: "14%", left: "16%" },
         { src: "/images/logos/photoshop.png", top: "2%", left: "-5%" },
-        { src: "/images/logos/ilustrator.jpg", top: "20%", left: "73%" },
+        { src: "/images/logos/i.jpg", top: "20%", left: "73%" },
         { src: "/images/logos/visual-studio-code.webp", top: "81%", left: "1%" },
-        { src: "/images/logos/github.PNG", top: "69%", left: "90%" },
+        { src: "/images/logos/g.png", top: "69%", left: "90%" },
     ];
 
 

@@ -139,43 +139,43 @@ export default function About() {
     return (
         <section className="bg-stone-950">
             <div ref={elementRef} className="bg-white relative w-full overflow-hidden -translate-y-50 mb-18 ">
-                <svg width="100%" className="h-auto absolute md:mt-0 mt-10 opacity-30" viewBox="0 0 800 565">
-                    <path
-                        ref={pathRef}
-                        d="M800 50 Q200 50 600 300 T0 580 "
-                        stroke="#0c0a09"
-                        strokeWidth="90"
-                        strokeLinecap="round"
-                        fill="transparent"
-                    />
-                </svg>
-                <div id="about" className="w-full overflow-hidden">
+                <div className="bg-white relative w-full overflow-hidden">
+                    <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-10 opacity-30" viewBox="0 0 800 580">
+                        <path
+                            ref={pathRef}
+                            d="M800 50 Q200 50 600 300 T0 640 "
+                            stroke="#0c0a09"
+                            strokeWidth="90"
+                            strokeLinecap="round"
+                            fill="transparent"
+                        />
+                    </svg>
+                    <div id="about" className="w-full overflow-hidden">
 
-                    <div ref={textCarousel} className="flex pt-20  whitespace-nowrap text-[9rem] gap-10">
+                        <div ref={textCarousel} className="flex pt-20  whitespace-nowrap text-[9rem] gap-10">
 
-                        {[...Array(6)].map((_, i) => (
-                            <div key={i} className="flex gap-10">
-                                <span>FULLSTACK DEVELOPER</span>
-                                <span>•</span>
-                                <span>AI ENGINEER</span>
-                                <span>•</span>
-                                <span>Deisgn Grafis</span>
-                                <span>•</span>
-                            </div>
-                        ))}
+                            {[...Array(6)].map((_, i) => (
+                                <div key={i} className="flex gap-10">
+                                    <span>FULLSTACK DEVELOPER</span>
+                                    <span>•</span>
+                                    <span>AI ENGINEER</span>
+                                    <span>•</span>
+                                    <span>Deisgn Grafis</span>
+                                    <span>•</span>
+                                </div>
+                            ))}
+
+                        </div>
 
                     </div>
-
-                </div>
-                <div className="container mx-auto">
-                    <div className=" -z-10 relative overflow-hidden w-full mt-5  group">
+                    <div className="container mx-auto z-0 relative overflow-hidden w-full mt-5  group">
                         <div className="relative w-full bg-stone-100 overflow-hidden" style={{ transform: "scale(1.04786)" }}>
                             <Image alt="Rasya sitting" width="2200" height="2500" decoding="async" data-nimg="1" className="w-full h-auto object-cover" src="/images/fd.png" style={{ color: " transparent" }} />
                         </div>
-                        <div className="bg-white w-full h-7 absolute bottom-0">
-
-                        </div>
                     </div>
+                </div>
+                <div className="container mx-auto">
+
                     <div className="bg-white z-10 w-full  ">
                         <div className="flex flex-col gap-6">
                             <div className="grid xl:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-10 md:pt-20 pt-10 pb-10 border-b border-stone-300">
@@ -188,7 +188,7 @@ export default function About() {
                                         My work spans web and mobile development, UI design, and interactive systems — from concept and interface design to development, optimization, and deployment.
 
                                         I focus on building solutions that actually make sense: web platforms, mobile apps, and interactive interfaces designed to solve real problems, simplify complexity, and create experiences that feel intuitive, useful, and genuinely enjoyable to use.
-                                    </p>                                    
+                                    </p>
                                     <div className="grid sm:grid-cols-3 grid-cols-1 mt-8 gap-3 border-stone-300">
                                         <div className="border-t flex flex-col gap-3 border-stone-300 pt-3">
                                             <span className="text-sm">Structured Thinking</span>
@@ -242,6 +242,6 @@ export default function About() {
 
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
