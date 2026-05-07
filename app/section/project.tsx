@@ -6,7 +6,7 @@ import { playFair } from "../lib/font";
 
 export default function Project() {
     return (
-        <div id="work" className="mt-15  pt-20 container mx-auto">
+        <div id="work" className="mt-10  pt-20 container mx-auto">
             <div className="grid md:flex lg:grid-cols-2 md:px-0 px-6 justify-between gap-5 items-end">
                 <div className="flex flex-col">
                     <span className="text-sm">
@@ -25,7 +25,7 @@ export default function Project() {
             </div>
             <div className=" mt-18 overflow-hidden border-y border-stone-300">
 
-                <a className=" w-full flex md:flex-row flex-col cursor-pointer group ">
+                <a className=" w-full flex md:flex-row flex-col  group ">
                     <div className="flex w-full md:flex-row flex-col">
                         <div className="flex flex-col ">
                             <span className="py-4 text-xs border-b px-4 border-stone-300">
@@ -69,7 +69,7 @@ export default function Project() {
                             <div className="w-full flex items-center justify-between md:justify-center gap-6 md:flex-col flex-row">
                                 <span className="text-xs">2025</span>
                                 <div>
-                                    <div className="w-10 h-10 flex items-center group-hover:bg-stone-100!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
+                                    <div className="w-10 h-10 flex items-center group-hover:bg-stone-200!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
                                         <ArrowRightStroke className="-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-[color]  text-black duration-300 translate-0" />
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@ export default function Project() {
                         </div>
                     </div>
                 </a>
-                <a className=" w-full border-t border-stone-300 pt-3 flex md:flex-row flex-col cursor-pointer group ">
+                <a className=" w-full border-t border-stone-300 pt-3 flex md:flex-row flex-col  group ">
                     <div className="flex w-full md:flex-row flex-col">
                         <div className="flex flex-col ">
                             <div className="py-6 px-4">
@@ -115,7 +115,7 @@ export default function Project() {
                             <div className="w-full flex items-center justify-between md:justify-center gap-6 md:flex-col flex-row">
                                 <span className="text-xs">2025</span>
                                 <div>
-                                    <div className="w-10 h-10 flex items-center group-hover:bg-stone-100!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
+                                    <div className="w-10 h-10 flex items-center group-hover:bg-stone-200!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
                                         <ArrowRightStroke className="-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-[color]  text-black duration-300 translate-0" />
                                     </div>
                                 </div>

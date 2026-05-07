@@ -67,66 +67,63 @@ export default function Skill() {
 
     useEffect(() => {
 
-        if (!sectionRef.current || !trackRef.current) return;
-
+        if (!trackRef.current) return;
 
         const ctx = gsap.context(() => {
+
             const track = trackRef.current;
 
-            const getScrollAmount = () => {
-                return (track?.scrollWidth ?? 0) - window.innerWidth;
-            };
+            const totalWidth = track!.scrollWidth / 2;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: track,
-                    start: "bottom 100%",
-                    end: () => `+=${getScrollAmount()}`,
-                    scrub: true,
-                    pin: true,
+            gsap.to(track, {
+                x: -totalWidth,
+                duration: 20,
+                ease: "none",
+                repeat: -1,
+                modifiers: {
+                    x: gsap.utils.unitize((x) => {
+                        return parseFloat(x) % totalWidth;
+                    }),
                 },
             });
 
-            tl.to(track, {
-                x: () => -getScrollAmount(),
-                ease: "none",
-            }, 0);
-
-        }, sectionRef);
+        }, trackRef);
 
         return () => ctx.revert();
+
     }, []);
 
     return (
-        <section className=" pt-17  2xl:container mx-auto  overflow-hidden">
+        <section className=" pt-20  2xl:container mx-auto  overflow-hidden">
             <div ref={textRef} className="container mx-auto">
                 <div className={`xl:text-5xl md:px-0 px-6 lg:text-4xl text-3xl xl:w-250 text-wrap lg:w-210 md:w-180 ${playFair.className}`}>
                     <TextAnimate text="Transforming ideas into exceptional digital experiences through expertise and innovation" />
                 </div>
 
             </div>
-            <div ref={sectionRef} className=" min-h-200">
+            <div ref={sectionRef} >
                 <div ref={trackRef} className="flex w-max  border border-stone-300 mt-20 items-stretch">
-                    {services.map((item, i) => (
-                        <div
-                            key={i}
-                            className={`flex flex-col hover:bg-stone-100 transition duration-300 p-10 md:w-120 w-80 border-stone-300 ${i !== services.length - 1 ? "border-e" : ""
-                                }`}
-                        >
-                            <div className="flex justify-between items-start">
-                                <span className="rounded-full w-12 h-12 bg-stone-100 flex items-center justify-center">
-                                    {item.icon}
-                                </span>
-                                <span className="text-xs text-stone-500">{item.no}</span>
-                            </div>
+                    {
+                        [...services, ...services].map((item, i) => (
+                            <div
+                                key={i}
+                                className={`shrink-0 flex flex-col hover:bg-stone-200 transition duration-300 p-10 md:w-120 w-80 border-stone-300 border-e`}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <span className="rounded-full w-12 h-12 bg-stone-200 flex items-center justify-center">
+                                        {item.icon}
+                                    </span>
+                                    <span className="text-xs text-stone-500">{item.no}</span>
+                                </div>
 
-                            <div className="mt-16 pb-6 mb-6 border-b border-stone-300">
-                                <span className="xl:text-3xl text-2xl">{item.title}</span>
-                            </div>
+                                <div className="mt-16 pb-6 mb-6 border-b border-stone-300">
+                                    <span className="xl:text-3xl text-2xl">{item.title}</span>
+                                </div>
 
-                            <span className="text-stone-500">{item.desc}</span>
-                        </div>
-                    ))}
+                                <span className="text-stone-500">{item.desc}</span>
+                            </div>
+                        ))
+                    }
                 </div>
 
             </div>

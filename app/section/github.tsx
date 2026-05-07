@@ -5,7 +5,7 @@ import { playFair } from "../lib/font";
 
 export default function Github() {
     return (
-        <div className=" mt-35 container mx-auto">
+        <div className=" mt-30 container mx-auto">
             <div className="grid md:flex md:px-0 px-6 lg:grid-cols-2 justify-between gap-5 items-end">
                 <div className="flex flex-col">
                     <span className="text-xs">

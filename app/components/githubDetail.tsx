@@ -140,7 +140,7 @@ export default function GithubDetail() {
         </div>
         <div className="flex items-start mt-3 pb-4 border-b border-stone-300 justify-between">
           <span className="md:text-3xl text-2xl">Last 12 Months</span>
-          <span className="p-1 px-3 bg-stone-100 text-sm border border-stone-300 rounded-4xl">{total} TOTAL</span>
+          <span className="p-1 px-3 bg-stone-200 text-sm border border-stone-300 rounded-4xl">{total} TOTAL</span>
         </div>
         <div className="pt-6">
           <div className="grid overflow-hidden grid-flow-col auto-cols-fr  mb-2 uppercase text-[10px] text-gray-500">

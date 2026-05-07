@@ -10,7 +10,8 @@ import Skill from "./section/skill";
 import Stack from "./section/stack";
 import Footer from "./section/footer";
 import Preloader from "./components/preLoader";
-import { useState } from "react";
+import {  useState } from "react";
+import CustomCursor from "./components/cursor";
 
 export default function Home() {
   const [ready, setReady] = useState(false);
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <main>
+      <CustomCursor />
       <SmoothScrollProvider />
       {!ready && <Preloader onFinish={() => setReady(true)} />}
       <Navbar />

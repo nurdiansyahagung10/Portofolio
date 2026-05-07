@@ -7,7 +7,7 @@ import { playFair } from "../lib/font";
 
 export default function Stack() {
     return (
-        <div className=" mt-35 container mx-auto">
+        <div className=" mt-30 container mx-auto">
             <div className="grid md:flex lg:grid-cols-2 md:px-0 px-6 justify-between gap-5 items-end">
                 <div className="flex flex-col">
                     <span className="text-sm">
@@ -34,7 +34,7 @@ export default function Stack() {
                                 <span className="xl:text-3xl text-2xl">AI & ML</span>
                             </div>
                             <div>
-                                <div className="border rounded-lg bg-stone-100 flex items-center justify-center border-stone-300 w-12 h-12">
+                                <div className="border rounded-lg bg-stone-200 flex items-center justify-center border-stone-300 w-12 h-12">
                                     <Chip />
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ export default function Stack() {
                                 <span className="xl:text-3xl text-2xl">Frontend Development</span>
                             </div>
                             <div>
-                                <div className="border rounded-lg bg-stone-100 flex items-center justify-center border-stone-300 w-12 h-12">
+                                <div className="border rounded-lg bg-stone-200 flex items-center justify-center border-stone-300 w-12 h-12">
                                     <TableLayout />
                                 </div>
                             </div>
@@ -98,7 +98,7 @@ export default function Stack() {
                                 <span className="xl:text-3xl text-2xl">System & Backend</span>
                             </div>
                             <div>
-                                <div className="border rounded-lg bg-stone-100 flex items-center justify-center border-stone-300 w-12 h-12">
+                                <div className="border rounded-lg bg-stone-200 flex items-center justify-center border-stone-300 w-12 h-12">
                                     <Server />
                                 </div>
                             </div>
@@ -130,7 +130,7 @@ export default function Stack() {
                                 <span className="xl:text-3xl text-2xl">Product & Delivery</span>
                             </div>
                             <div>
-                                <div className="border rounded-lg bg-stone-100 flex items-center justify-center border-stone-300 w-12 h-12">
+                                <div className="border rounded-lg bg-stone-200 flex items-center justify-center border-stone-300 w-12 h-12">
                                     <Package />
                                 </div>
                             </div>

@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/all";
 import TextAnimate from "./textAnimate";
 import ButtonAnimate from "./buttonAnimate";
 import Image from "next/image";
+import { Spotlight } from "@/components/ui/spotlight";
+import ParallaxHover from "./paralaxHover";
 
 const playFair = Playfair_Display({
     subsets: ['latin'],
@@ -22,6 +24,7 @@ export default function Hero({ ready }: Props) {
 
 
     const sectionRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const images = [
         "gs.png",
@@ -32,6 +35,89 @@ export default function Hero({ ready }: Props) {
     ];
 
 
+    useEffect(() => {
+        const el = scrollRef.current;
+
+        if (!el) return;
+
+        let currentIndex = 1;
+
+        const items = el.children;
+        const total = items.length;
+
+
+
+        const handleEnter = () => {
+            window.lenis?.stop();
+        };
+
+        const handleLeave = () => {
+            window.lenis?.start();
+        };
+
+        const goToSlide = (index: number, smooth = true) => {
+            const slideHeight = el.clientHeight;
+
+            el.scrollTo({
+                top: index * slideHeight,
+                behavior: smooth ? "smooth" : "auto",
+            });
+        };
+
+        let accumulatedDelta = 0;
+        let isLocked = false;
+
+        const handleWheel = (e: WheelEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isLocked) return;
+
+            accumulatedDelta += e.deltaY;
+
+            const threshold = 80;
+
+            if (Math.abs(accumulatedDelta) < threshold) return;
+
+            isLocked = true;
+
+            if (accumulatedDelta > 0) {
+                currentIndex = (currentIndex + 1) % total;
+            } else {
+                currentIndex = (currentIndex - 1 + total) % total;
+            }
+
+            if (currentIndex === 0) {
+                currentIndex = total - 2;
+                goToSlide(currentIndex, false);
+            }
+            else {
+                goToSlide(currentIndex);
+
+            }
+
+            accumulatedDelta = 0;
+
+            setTimeout(() => {
+                isLocked = false;
+            }, 250);
+        };
+
+        el.addEventListener("mouseenter", handleEnter);
+        el.addEventListener("mouseleave", handleLeave);
+
+        el.addEventListener("wheel", handleWheel, {
+            passive: false,
+        });
+
+        return () => {
+            window.lenis?.start();
+
+            el.removeEventListener("mouseenter", handleEnter);
+            el.removeEventListener("mouseleave", handleLeave);
+            el.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
 
     useEffect(() => {
 
@@ -67,6 +153,7 @@ export default function Hero({ ready }: Props) {
             const tl = gsap.timeline({
                 onComplete: () => {
                     window.lenis.start();
+                    document.body.classList.remove('overflow-y-hidden');
                 }
             });
 
@@ -139,14 +226,112 @@ export default function Hero({ ready }: Props) {
 
 
     return (
-        <header>
-            <div className="h-180 flex flex-col justify-center  items-center text-center ">
-                <div className="container mx-auto px-10 md:mt-64 mt-55 md:mb-10 flex flex-col gap-6">
+        <header className="bg-stone-200"  >
+            <div className="h-180 relative flex flex-col justify-center  items-center text-center ">
+                <Spotlight
+                    className="-top-40 absolute left-0 md:-top-30 md:-left-40"
+                    fill="white"
+                />
+                <Spotlight
+                    className="-top-40 absolute left-0 md:-top-40 md:left-90"
+                    fill="white"
+                />
+
+                <div className="container mx-auto px-10 md:mt-74 mt-55 md:mb-5 flex flex-col gap-6">
                     <span className={` xl:text-lg`}>Hi! Iam Agung Nurdiansyah</span>
                     <p className={`${playFair.className} xl:text-5xl text-4xl`}>
-                        Transforming ideas into digital structures. <span className=" bg-stone-200"><i>Blending</i></span> peak performance with minimal aesthetics.
-                    </p>                    <div className="flex justify-center">
-                        <button className="mt-5 border  cursor-pointer border-stone-300 rounded-4xl pe-2 ps-3 py-2 flex justify-between gap-2 items-center"><span>See my CV</span> <span className="rounded-full p-1 bg-stone-100"><GridCircle /></span></button>
+                        Crafting <button
+
+                            className="
+                                bg-black
+                                cursor-none                              
+                                rounded-full
+                                w-20
+                                h-10
+                                translate-y-1
+                                p-[0.15rem]
+                                shadow-[4px_4px_10px_rgba(0,0,0,0.6)]
+                                mx-2
+                            "
+                        >
+                            <div
+
+                                data-lenis-prevent
+                                ref={scrollRef}
+                                className="
+                                        w-full
+                                        h-full
+                                        overflow-hidden
+                                        rounded-full
+                                        
+                                        no-scrollbar
+                                    "
+                                style={{ scrollSnapType: "y mandatory" }}
+                            >                                <div className="w-full h-full overflow-hidden shrink-0">
+                                    <img data-cursor-text="Scroll here" style={{
+                                        scrollSnapAlign: "start",
+                                    }}
+                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
+                                        className="h-full w-full hover-target object-cover"
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="w-full h-full overflow-hidden shrink-0">
+                                    <img data-cursor-text="Scroll here" style={{
+                                        scrollSnapAlign: "start",
+                                    }}
+                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
+                                        className="h-full w-full hover-target object-cover"
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="w-full h-full overflow-hidden shrink-0">
+                                    <img data-cursor-text="Scroll here" style={{
+                                        scrollSnapAlign: "start",
+                                    }}
+                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
+                                        className="h-full w-full hover-target object-cover"
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="w-full h-full overflow-hidden shrink-0">
+                                    <img data-cursor-text="Scroll here" style={{
+                                        scrollSnapAlign: "start",
+                                    }}
+                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
+                                        className="h-full w-full hover-target object-cover"
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="w-full h-full overflow-hidden shrink-0">
+                                    <img data-cursor-text="Scroll here" style={{
+                                        scrollSnapAlign: "start",
+                                    }}
+                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
+                                        className="h-full w-full hover-target object-cover"
+                                        alt=""
+                                    />
+                                </div>
+                            </div>
+                        </button> digital experiences with
+                        minimal aesthetics  and purposeful  performance,
+                        based in Indonesia
+                        <button className="bg-black cursor-none rounded-full w-20 h-10 translate-y-1 overflow-hidden p-[0.15rem] shadow-[4px_4px_10px_rgba(0,0,0,0.6)] mx-2">
+                            <div className="w-full h-full overflow-hidden shrink-0 rounded-full">
+                                <img
+                                    src="https://samplingamerica.com/wp-content/uploads/2023/08/Indonesia-1.png"
+                                    className="h-full w-full object-cover"
+                                    alt=""
+                                />
+                            </div>
+                        </button>
+                    </p>
+                    <div className="flex justify-center">
+                        <button className="mt-5 border   border-stone-300  rounded-4xl pe-2 ps-3 py-2 flex justify-between gap-2 items-center"><span>See my CV</span>
+                            <ParallaxHover className="rounded-full p-1 bg-black text-white">
+                                <GridCircle />
+                            </ParallaxHover>
+                        </button>
                     </div>
                 </div>
                 <div className="relative overflow-hidden w-full md:pt-40 pt-30 py-40 pb-60 ">
@@ -181,13 +366,16 @@ export default function Hero({ ready }: Props) {
                             </p>
                         </div>
                     </div>
-                    <div className=" flex justify-center">
-                        <a className="flex animblob w-0 flex-none justify-center group gap-1">
-                            <ButtonAnimate value="About Me" className="py-3! px-6! text-black! bg-amber-500!" />
-                            <button className="rounded-full -rotate-45 group-hover:text-black! transition duration-500 group-hover:-rotate-180  group-hover:bg-white! cursor-pointer bg-amber-500 px-3 text-black"><ArrowRightStroke /></button>
+                    <ParallaxHover>
+                        <div className=" flex justify-center">
+                            <a className="flex animblob w-0 flex-none justify-center group gap-1">
+                                <ButtonAnimate value="About Me" className="py-3! px-6! text-black! bg-amber-500!" />
+                                <button className="rounded-full -rotate-45 group-hover:text-black! transition duration-500 group-hover:-rotate-180  group-hover:bg-white!  bg-amber-500 px-3 text-black"><ArrowRightStroke /></button>
 
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+
+                    </ParallaxHover>
 
                 </div>
                 <div className="gap-6 mt-24 text-white pb-6 mb-5 w-full border-stone-600 border-b ">

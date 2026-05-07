@@ -73,7 +73,7 @@ export default function Footer() {
     return (
         <section >
             <div ref={containerRef} className="h-[300vh] bg-stone-950  relative">
-                <div className="sticky top-0 h-screen bg-white grid rounded-b-4xl place-items-center overflow-hidden px-6 md:px-24 xl:px-40">
+                <div className="sticky top-0 h-screen bg-stone-100 grid rounded-b-4xl place-items-center overflow-hidden px-6 md:px-24 xl:px-40">
 
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                         <div className="relative w-full max-w-6xl aspect-[1.8]">
@@ -152,7 +152,7 @@ export default function Footer() {
 
                         </div>
                         <div>
-                            <div className="rounded-full flex text-nowrap items-center cursor-pointer justify-center  border-stone-900 border py-3 px-20 mt-2 ">
+                            <div className="rounded-full flex text-nowrap items-center  justify-center  border-stone-900 border py-3 px-20 mt-2 ">
                                 Lets Talk
                             </div>
                         </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import gsap from "gsap";
 import BackdropBlur from "./backdropBlur";
 import ButtonAnimate from "./buttonAnimate";
+import ParallaxHover from "./paralaxHover";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,9 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             console.log(window.scrollY)
-            if (window.scrollY > 12480) {
+            if (window.scrollY > 10200) {
                 setIsDarkBg(false);
-            } else if (window.scrollY > 8400) {
+            } else if (window.scrollY > 6300) {
                 setIsDarkBg(true);
             } else if (window.scrollY > 1660) {
                 setIsDarkBg(false);
@@ -81,17 +82,19 @@ export default function Navbar() {
                         className={`
     flex items-center justify-between gap-4 p-1.5 ps-6 rounded-4xl transition-all duration-300
     ${isDarkBg
-                                ? 'bg-white/5 text-white backdrop-blur-xl'
-                                : 'bg-black/5 text-black backdrop-blur-xl'}
+                                ? 'bg-white/5 text-white backdrop-blur-lg'
+                                : 'bg-black/5 text-black backdrop-blur-lg'}
   `}
                     >                        <div className="flex items-center gap-9">
-                            <a className="cursor-pointer" onClick={() => { window.lenis.stop(); window.lenis.scrollTo("#about") }}>
+                            <a className="" onClick={() => window.lenis.scrollTo("#about")}>
                                 About</a>
-                            <a className="cursor-pointer" onClick={() => { window.lenis.stop(); window.lenis.scrollTo("#work") }}>
+                            <a className="" onClick={() => window.lenis.scrollTo("#work")}>
                                 Work</a>
-                            <a className="cursor-pointer" onClick={() => { window.lenis.stop(); window.lenis.scrollTo("#exp") }}>
+                            <a className="" onClick={() => window.lenis.scrollTo("#exp")}>
                                 Experience</a>
-                            <ButtonAnimate className="bg-black!" value="Contact" />
+                            <ParallaxHover>
+                                <ButtonAnimate className="bg-black!" value="Contact" />
+                            </ParallaxHover>
                         </div>
                     </div>
 
@@ -105,7 +108,7 @@ export default function Navbar() {
                             bg-black text-white
                             rounded-3xl
                             flex flex-col
-                            cursor-pointer
+                            
                             overflow-hidden
                             transition-all duration-500 ease-in-out
                             z-20
@@ -113,7 +116,7 @@ export default function Navbar() {
                         `}
                     >
                         <div>
-                            <button className="w-14 h-14  cursor-pointer flex justify-center items-center float-end">
+                            <button className="w-14 h-14   flex justify-center items-center float-end">
                                 <div className="flex flex-col gap-1.25">
                                     <span className={`w-6 h-0.5 rounded-2xl bg-white transition duration-500 ${isOpen ? "rotate-45 translate-y-1.75" : ""}`}></span>
                                     <span className={`w-6 h-0.5 rounded-2xl bg-white transition duration-500 scale-100 ${isOpen ? "scale-0!" : ""}`}></span>

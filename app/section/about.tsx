@@ -138,8 +138,8 @@ export default function About() {
 
     return (
         <section className="bg-stone-950">
-            <div ref={elementRef} className="bg-white relative w-full overflow-hidden -translate-y-50 mb-18 ">
-                <div className="bg-white relative w-full overflow-hidden">
+            <div ref={elementRef} className="bg-stone-100 relative w-full overflow-hidden -translate-y-50 mb-21 ">
+                <div className="bg-stone-100 relative w-full overflow-hidden">
                     <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-3 opacity-30" viewBox="0 0 800 580">
                         <path
                             ref={pathRef}
@@ -176,7 +176,7 @@ export default function About() {
                 </div>
                 <div className="container mx-auto">
 
-                    <div className="bg-white z-10 w-full  ">
+                    <div className="bg-stone-100 z-10 w-full  ">
                         <div className="flex flex-col gap-6">
                             <div className="grid xl:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-10 md:pt-20 pt-10 pb-10 border-b border-stone-300">
                                 <div className={`xl:text-7xl md:text-6xl text-4xl md:px-0 px-6 col-span-1 ${playFair.className}`}>

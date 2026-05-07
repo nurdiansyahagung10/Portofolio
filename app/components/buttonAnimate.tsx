@@ -70,7 +70,7 @@ export default function ButtonAnimate({ value, className }: Props) {
         ));
     return (
         <div className="flex items-center gap-px ">
-            <div ref={wrapperRef} className={`relative cursor-pointer bg-black text-white  text-[15px] px-6 py-2 rounded-full overflow-hidden ${className}`}>
+            <div ref={wrapperRef} className={`relative  bg-black text-white  text-[15px] px-6 py-2 rounded-full overflow-hidden ${className}`}>
                 <div className="bg absolute inset-0 bg-white w-0 " />
                 <div className="relative z-10 h-6 overflow-hidden flex flex-col items-center">
                     <div className="flex text-top">

@@ -16,6 +16,7 @@ export default function Preloader({ onFinish }: Props) {
 
         if (window.scrollY < 2100) {
             window.lenis?.stop();
+            document.body.classList.add('overflow-y-hidden');
         }
 
         const tl = gsap.timeline();
