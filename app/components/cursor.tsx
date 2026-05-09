@@ -8,6 +8,7 @@ export default function CustomCursor() {
 
   const [cursor, setCursor] = useState({
     hovered: false,
+    isBlob: false,
     text: "",
   });
 
@@ -26,15 +27,26 @@ export default function CustomCursor() {
 
     targets.forEach((el) => {
       const enter = () => {
-        setCursor({
-          hovered: true,
-          text: el.dataset.cursorText || "",
-        });
-      };
+        if (el.classList.contains('hover-blob')) {
+          setCursor({
+            hovered: true,
+            isBlob: true,
+            text: el.dataset.cursorText || "",
+          });
+        } else {
+          setCursor({
+            hovered: true,
+            isBlob: false,
+            text: el.dataset.cursorText || "",
+          });
+
+        };
+      }
 
       const leave = () => {
         setCursor({
           hovered: false,
+          isBlob: false,
           text: "",
         });
       };
@@ -42,7 +54,6 @@ export default function CustomCursor() {
       el.addEventListener("mouseenter", enter);
       el.addEventListener("mouseleave", leave);
 
-      // cleanup per element
       return () => {
         el.removeEventListener("mouseenter", enter);
         el.removeEventListener("mouseleave", leave);
@@ -65,19 +76,17 @@ export default function CustomCursor() {
         stiffness: 500,
         damping: 28,
       }}
-      className="pointer-events-none fixed left-0 top-0 z-[9999] mix-blend-difference"
+      className="pointer-events-none md:block hidden fixed left-0 top-0 z-9999 mix-blend-difference"
     >
       <div className="flex items-center gap-3">
-        {/* Circle */}
         <div
           className={`
             h-6 w-6 rounded-full border-2 border-white
             transition-all duration-300
-            ${cursor.hovered ? "scale-40" : "scale-100"}
+            ${cursor.hovered ? (cursor.isBlob ? "scale-130" : "scale-40") : "scale-100"}
           `}
         />
 
-        {/* Dynamic Text */}
         <motion.span
           initial={{ opacity: 0, x: -10 }}
           animate={{

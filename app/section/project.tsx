@@ -2,6 +2,7 @@
 import TextAnimate from "../components/textAnimate";
 import { ArrowRightStroke } from "@boxicons/react";
 import { playFair } from "../lib/font";
+import ParallaxHover from "../components/paralaxHover";
 
 
 export default function Project() {
@@ -25,7 +26,7 @@ export default function Project() {
             </div>
             <div className=" mt-18 overflow-hidden border-y border-stone-300">
 
-                <a className=" w-full flex md:flex-row flex-col  group ">
+                <a className=" w-full hover-target hover-blob flex md:flex-row flex-col  group ">
                     <div className="flex w-full md:flex-row flex-col">
                         <div className="flex flex-col ">
                             <span className="py-4 text-xs border-b px-4 border-stone-300">
@@ -43,7 +44,7 @@ export default function Project() {
                         <div className="flex flex-col md:w-130 text-start  ">
                             <span className="py-4 text-xs lg:block hidden  border-b px-4 border-stone-300 ">DETAILS</span>
                             <div className="flex lg:py-6 md:pb-6 pb-3 px-4 flex-col gap-3">
-                                <span className="xl:text-3xl text-2xl">Diabetes risk prediction app</span>
+                                <span className=" text-2xl">Diabetes risk prediction app</span>
                                 <span className="text-stone-500 text-sm">a healt screening app that estimates diabetes risk from patient indicators and present quick, easy to understand result to support earlier prevent decisions</span>
                             </div>
                         </div>
@@ -68,16 +69,16 @@ export default function Project() {
                         <div className="flex py-6 px-4 flex-col items-center gap-3">
                             <div className="w-full flex items-center justify-between md:justify-center gap-6 md:flex-col flex-row">
                                 <span className="text-xs">2025</span>
-                                <div>
+                                <ParallaxHover>
                                     <div className="w-10 h-10 flex items-center group-hover:bg-stone-200!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
                                         <ArrowRightStroke className="-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-[color]  text-black duration-300 translate-0" />
                                     </div>
-                                </div>
+                                </ParallaxHover>
                             </div>
                         </div>
                     </div>
                 </a>
-                <a className=" w-full border-t border-stone-300 pt-3 flex md:flex-row flex-col  group ">
+                <a className=" w-full hover-target hover-blob border-t border-stone-300 pt-3 flex md:flex-row flex-col  group ">
                     <div className="flex w-full md:flex-row flex-col">
                         <div className="flex flex-col ">
                             <div className="py-6 px-4">
@@ -91,7 +92,7 @@ export default function Project() {
                         </div>
                         <div className="flex flex-col md:w-130 text-start  ">
                             <div className="flex lg:py-6 md:pb-6 pb-3 px-4 flex-col gap-3">
-                                <span className="xl:text-3xl text-2xl">Diabetes risk prediction app</span>
+                                <span className=" text-2xl">Diabetes risk prediction app</span>
                                 <span className="text-stone-500 text-sm">a healt screening app that estimates diabetes risk from patient indicators and present quick, easy to understand result to support earlier prevent decisions</span>
                             </div>
                         </div>
@@ -114,11 +115,11 @@ export default function Project() {
                         <div className="flex py-6 px-4 flex-col items-center gap-3">
                             <div className="w-full flex items-center justify-between md:justify-center gap-6 md:flex-col flex-row">
                                 <span className="text-xs">2025</span>
-                                <div>
+                                <ParallaxHover>
                                     <div className="w-10 h-10 flex items-center group-hover:bg-stone-200!  transition duration-300 group-hover:border-0  justify-center border rounded-full border-stone-300">
                                         <ArrowRightStroke className="-rotate-45 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-[color]  text-black duration-300 translate-0" />
                                     </div>
-                                </div>
+                                </ParallaxHover>
                             </div>
                         </div>
                     </div>

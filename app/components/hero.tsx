@@ -25,6 +25,13 @@ export default function Hero({ ready }: Props) {
 
     const sectionRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const images2 = [
+        "https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center",
+        "https://cdn.dribbble.com/userupload/47653992/file/1ddf0794874da9b2e76bf0958c901c35.png?format=webp&resize=640x480&vertical=center",
+        "https://cdn.dribbble.com/userupload/47317381/file/36bff4c595239e01fb9a707e1091bb14.png?format=webp&resize=800x600&vertical=center",
+        "https://cdn.dribbble.com/userupload/47264529/file/156b33b66b177c39dc6709d118d37ae6.png?format=webp&resize=800x600&vertical=center",
+        "https://cdn.dribbble.com/userupload/47218260/file/ff5cfc6dab636e46d9df351aadabab86.png?resize=2048x1536&vertical=center",
+    ];
 
     const images = [
         "gs.png",
@@ -40,12 +47,11 @@ export default function Hero({ ready }: Props) {
 
         if (!el) return;
 
-        let currentIndex = 1;
+        let currentIndex = 0;
+        let isLocked = false;
+        let accumulatedDelta = 0;
 
-        const items = el.children;
-        const total = items.length;
-
-
+        const total = el.children.length;
 
         const handleEnter = () => {
             window.lenis?.stop();
@@ -55,7 +61,10 @@ export default function Hero({ ready }: Props) {
             window.lenis?.start();
         };
 
-        const goToSlide = (index: number, smooth = true) => {
+        const goToSlide = (
+            index: number,
+            smooth = true
+        ) => {
             const slideHeight = el.clientHeight;
 
             el.scrollTo({
@@ -63,9 +72,6 @@ export default function Hero({ ready }: Props) {
                 behavior: smooth ? "smooth" : "auto",
             });
         };
-
-        let accumulatedDelta = 0;
-        let isLocked = false;
 
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
@@ -77,45 +83,69 @@ export default function Hero({ ready }: Props) {
 
             const threshold = 80;
 
-            if (Math.abs(accumulatedDelta) < threshold) return;
+            if (Math.abs(accumulatedDelta) < threshold)
+                return;
 
             isLocked = true;
 
             if (accumulatedDelta > 0) {
-                currentIndex = (currentIndex + 1) % total;
+                // scroll down
+                currentIndex = Math.min(
+                    currentIndex + 1,
+                    total - 1
+                );
             } else {
-                currentIndex = (currentIndex - 1 + total) % total;
+                // scroll up
+                currentIndex = Math.max(
+                    currentIndex - 1,
+                    0
+                );
             }
 
-            if (currentIndex === 0) {
-                currentIndex = total - 2;
-                goToSlide(currentIndex, false);
-            }
-            else {
-                goToSlide(currentIndex);
-
-            }
+            goToSlide(currentIndex);
 
             accumulatedDelta = 0;
 
             setTimeout(() => {
                 isLocked = false;
-            }, 250);
+            }, 300);
         };
 
-        el.addEventListener("mouseenter", handleEnter);
-        el.addEventListener("mouseleave", handleLeave);
+        el.addEventListener(
+            "mouseenter",
+            handleEnter
+        );
 
-        el.addEventListener("wheel", handleWheel, {
-            passive: false,
-        });
+        el.addEventListener(
+            "mouseleave",
+            handleLeave
+        );
+
+        el.addEventListener(
+            "wheel",
+            handleWheel,
+            {
+                passive: false,
+            }
+        );
 
         return () => {
             window.lenis?.start();
 
-            el.removeEventListener("mouseenter", handleEnter);
-            el.removeEventListener("mouseleave", handleLeave);
-            el.removeEventListener("wheel", handleWheel);
+            el.removeEventListener(
+                "mouseenter",
+                handleEnter
+            );
+
+            el.removeEventListener(
+                "mouseleave",
+                handleLeave
+            );
+
+            el.removeEventListener(
+                "wheel",
+                handleWheel
+            );
         };
     }, []);
 
@@ -227,6 +257,7 @@ export default function Hero({ ready }: Props) {
 
     return (
         <header className="bg-stone-200"  >
+
             <div className="h-180 relative flex flex-col justify-center  items-center text-center ">
                 <Spotlight
                     className="-top-40 absolute left-0 md:-top-30 md:-left-40"
@@ -241,80 +272,104 @@ export default function Hero({ ready }: Props) {
                     <span className={` xl:text-lg`}>Hi! Iam Agung Nurdiansyah</span>
                     <p className={`${playFair.className} xl:text-5xl text-4xl`}>
                         Crafting <button
-
                             className="
-                                bg-black
-                                cursor-none                              
-                                rounded-full
-                                w-20
-                                h-10
-                                translate-y-1
-                                p-[0.15rem]
-                                shadow-[4px_4px_10px_rgba(0,0,0,0.6)]
-                                mx-2
-                            "
+        hidden md:inline-flex
+        bg-black
+        cursor-none
+        rounded-full
+        w-20
+        h-10
+        translate-y-1
+        p-[0.15rem]
+        shadow-[4px_4px_10px_rgba(0,0,0,0.6)]
+        mx-2
+    "
                         >
                             <div
-
                                 data-lenis-prevent
                                 ref={scrollRef}
                                 className="
-                                        w-full
-                                        h-full
-                                        overflow-hidden
-                                        rounded-full
-                                        
-                                        no-scrollbar
-                                    "
+            w-full
+            h-full
+            overflow-hidden
+            rounded-full
+            no-scrollbar
+        "
                                 style={{ scrollSnapType: "y mandatory" }}
-                            >                                <div className="w-full h-full overflow-hidden shrink-0">
-                                    <img data-cursor-text="Scroll here" style={{
-                                        scrollSnapAlign: "start",
-                                    }}
-                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
-                                        className="h-full w-full hover-target object-cover"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="w-full h-full overflow-hidden shrink-0">
-                                    <img data-cursor-text="Scroll here" style={{
-                                        scrollSnapAlign: "start",
-                                    }}
-                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
-                                        className="h-full w-full hover-target object-cover"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="w-full h-full overflow-hidden shrink-0">
-                                    <img data-cursor-text="Scroll here" style={{
-                                        scrollSnapAlign: "start",
-                                    }}
-                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
-                                        className="h-full w-full hover-target object-cover"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="w-full h-full overflow-hidden shrink-0">
-                                    <img data-cursor-text="Scroll here" style={{
-                                        scrollSnapAlign: "start",
-                                    }}
-                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
-                                        className="h-full w-full hover-target object-cover"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="w-full h-full overflow-hidden shrink-0">
-                                    <img data-cursor-text="Scroll here" style={{
-                                        scrollSnapAlign: "start",
-                                    }}
-                                        src="https://cdn.dribbble.com/userupload/47083615/file/a85abfca077020d923641e49665a44c6.png?resize=2048x1536&vertical=center"
-                                        className="h-full w-full hover-target object-cover"
-                                        alt=""
-                                    />
-                                </div>
+                            >
+                                {images2.map((image, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-full h-full overflow-hidden shrink-0"
+                                    >
+                                        <img
+                                            data-cursor-text="Scroll here"
+                                            style={{
+                                                scrollSnapAlign: "start",
+                                            }}
+                                            src={image}
+                                            className="
+                        h-full
+                        w-full
+                        hover-target
+                        object-cover
+                    "
+                                            alt={`image-${index}`}
+                                        />
+                                    </div>
+                                ))}
                             </div>
-                        </button> digital experiences with
-                        minimal aesthetics  and purposeful  performance,
+                        </button>
+
+                        digital experiences <button
+                            className="
+        inline-flex md:hidden
+        bg-black
+        cursor-none
+        rounded-full
+        w-20
+        h-10
+        translate-y-1
+        p-[0.15rem]
+        shadow-[4px_4px_10px_rgba(0,0,0,0.6)]
+        mx-2
+    "
+                        >
+                            <div
+                                className="
+            w-full
+            h-full
+            overflow-hidden
+            rounded-full
+            no-scrollbar
+        "
+                                style={{ scrollSnapType: "y mandatory" }}
+                            >
+                                {images2.map((image, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-full h-full overflow-hidden shrink-0"
+                                    >
+                                        <img
+                                            data-cursor-text="Scroll here"
+                                            style={{
+                                                scrollSnapAlign: "start",
+                                            }}
+                                            src={image}
+                                            className="
+                        h-full
+                        w-full
+                        hover-target
+                        object-cover
+                    "
+                                            alt={`image-${index}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </button>
+
+                        with minimal aesthetics and purposeful performance,
                         based in Indonesia
                         <button className="bg-black cursor-none rounded-full w-20 h-10 translate-y-1 overflow-hidden p-[0.15rem] shadow-[4px_4px_10px_rgba(0,0,0,0.6)] mx-2">
                             <div className="w-full h-full overflow-hidden shrink-0 rounded-full">
@@ -327,8 +382,8 @@ export default function Hero({ ready }: Props) {
                         </button>
                     </p>
                     <div className="flex justify-center">
-                        <button className="mt-5 border   border-stone-300  rounded-4xl pe-2 ps-3 py-2 flex justify-between gap-2 items-center"><span>See my CV</span>
-                            <ParallaxHover className="rounded-full p-1 bg-black text-white">
+                        <button className="mt-5 border hover-target hover-blob cursor-none   border-stone-300  rounded-4xl pe-2 ps-3 py-2 flex justify-between gap-2 items-center"><span>See my CV</span>
+                            <ParallaxHover className="rounded-full  p-1 bg-black text-white">
                                 <GridCircle />
                             </ParallaxHover>
                         </button>
@@ -366,16 +421,16 @@ export default function Hero({ ready }: Props) {
                             </p>
                         </div>
                     </div>
-                    <ParallaxHover>
-                        <div className=" flex justify-center">
+                    <div className=" flex justify-center">
+                        <ParallaxHover>
                             <a className="flex animblob w-0 flex-none justify-center group gap-1">
-                                <ButtonAnimate value="About Me" className="py-3! px-6! text-black! bg-amber-500!" />
+                                <ButtonAnimate value="About Me" className="py-3! px-6! hover-target hover-blob text-black! bg-amber-500!" />
                                 <button className="rounded-full -rotate-45 group-hover:text-black! transition duration-500 group-hover:-rotate-180  group-hover:bg-white!  bg-amber-500 px-3 text-black"><ArrowRightStroke /></button>
-
                             </a>
-                        </div>
+                        </ParallaxHover>
 
-                    </ParallaxHover>
+                    </div>
+
 
                 </div>
                 <div className="gap-6 mt-24 text-white pb-6 mb-5 w-full border-stone-600 border-b ">
@@ -391,6 +446,6 @@ export default function Hero({ ready }: Props) {
                 </div>
 
             </div>
-        </header>
+        </header >
     );
 }

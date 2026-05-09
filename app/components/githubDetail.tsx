@@ -165,7 +165,8 @@ export default function GithubDetail() {
                   <div
                     key={j}
                     title={`${day.date}: ${day.contributionCount}`}
-                    className={`w-full aspect-square rounded-[3.8px] ${getColor(day.contributionCount)}`}
+                    data-cursor-text="Scroll here"
+                    className={`w-full aspect-square rounded-[3.8px] cursor-target ${getColor(day.contributionCount)}`}
                   />
                 ))}
               </div>

@@ -12,7 +12,6 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log(window.scrollY)
             if (window.scrollY > 10200) {
                 setIsDarkBg(false);
             } else if (window.scrollY > 6300) {
@@ -86,13 +85,13 @@ export default function Navbar() {
                                 : 'bg-black/5 text-black backdrop-blur-lg'}
   `}
                     >                        <div className="flex items-center gap-9">
-                            <a className="" onClick={() => window.lenis.scrollTo("#about")}>
+                            <a className=" hover-target  hover-blob" onClick={() => window.lenis.scrollTo("#about")}>
                                 About</a>
-                            <a className="" onClick={() => window.lenis.scrollTo("#work")}>
+                            <a className=" hover-target  hover-blob" onClick={() => window.lenis.scrollTo("#work")}>
                                 Work</a>
-                            <a className="" onClick={() => window.lenis.scrollTo("#exp")}>
+                            <a className=" hover-target  hover-blob" onClick={() => window.lenis.scrollTo("#exp")}>
                                 Experience</a>
-                            <ParallaxHover>
+                            <ParallaxHover className="hover-target hover-blob">
                                 <ButtonAnimate className="bg-black!" value="Contact" />
                             </ParallaxHover>
                         </div>

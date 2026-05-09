@@ -67,29 +67,90 @@ export default function Skill() {
 
     useEffect(() => {
 
-        if (!trackRef.current) return;
+        const track = trackRef.current;
 
-        const ctx = gsap.context(() => {
+        if (!track) return;
 
-            const track = trackRef.current;
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
 
-            const totalWidth = track!.scrollWidth / 2;
+        const handleMouseDown = (e: MouseEvent) => {
+            isDown = true;
 
-            gsap.to(track, {
-                x: -totalWidth,
-                duration: 20,
-                ease: "none",
-                repeat: -1,
-                modifiers: {
-                    x: gsap.utils.unitize((x) => {
-                        return parseFloat(x) % totalWidth;
-                    }),
-                },
-            });
+            startX = e.pageX - track.offsetLeft;
 
-        }, trackRef);
+            scrollLeft = track.scrollLeft;
 
-        return () => ctx.revert();
+            track.style.cursor = "grabbing";
+        };
+
+        const handleMouseLeave = () => {
+            isDown = false;
+
+            track.style.cursor = "grab";
+        };
+
+        const handleMouseUp = () => {
+            isDown = false;
+
+            track.style.cursor = "grab";
+        };
+
+        const handleMouseMove = (e: MouseEvent) => {
+
+            if (!isDown) return;
+
+            e.preventDefault();
+
+            const x = e.pageX - track.offsetLeft;
+
+            const walk = (x - startX) * 1.5;
+
+            track.scrollLeft = scrollLeft - walk;
+        };
+
+        track.addEventListener(
+            "mousedown",
+            handleMouseDown
+        );
+
+        track.addEventListener(
+            "mouseleave",
+            handleMouseLeave
+        );
+
+        track.addEventListener(
+            "mouseup",
+            handleMouseUp
+        );
+
+        track.addEventListener(
+            "mousemove",
+            handleMouseMove
+        );
+
+        return () => {
+            track.removeEventListener(
+                "mousedown",
+                handleMouseDown
+            );
+
+            track.removeEventListener(
+                "mouseleave",
+                handleMouseLeave
+            );
+
+            track.removeEventListener(
+                "mouseup",
+                handleMouseUp
+            );
+
+            track.removeEventListener(
+                "mousemove",
+                handleMouseMove
+            );
+        };
 
     }, []);
 
@@ -102,9 +163,25 @@ export default function Skill() {
 
             </div>
             <div ref={sectionRef} >
-                <div ref={trackRef} className="flex w-max  border border-stone-300 mt-20 items-stretch">
+                <div
+                    ref={trackRef}
+                    data-cursor-text="Drag here"
+                    className="
+                        hover-target
+                        flex
+                        overflow-x-auto
+                        w-full
+                        mt-20
+                        border
+                        border-stone-300
+                        items-stretch
+                        no-scrollbar
+                        cursor-none!
+                        select-none
+                    "
+                >
                     {
-                        [...services, ...services].map((item, i) => (
+                        services.map((item, i) => (
                             <div
                                 key={i}
                                 className={`shrink-0 flex flex-col hover:bg-stone-200 transition duration-300 p-10 md:w-120 w-80 border-stone-300 border-e`}

@@ -40,7 +40,7 @@ export default function About() {
                 ease: "none",
                 scrollTrigger: {
                     trigger: pathRef.current,
-                    start: "top 100%",
+                    start: "top 60%",
                     end: "top -70%",
                     scrub: true,
                     toggleActions: "play reset play reset",
@@ -140,7 +140,7 @@ export default function About() {
         <section className="bg-stone-950">
             <div ref={elementRef} className="bg-stone-100 relative w-full overflow-hidden -translate-y-50 mb-21 ">
                 <div className="bg-stone-100 relative w-full overflow-hidden">
-                    <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-3 opacity-30" viewBox="0 0 800 580">
+                    <svg width="100%" className="h-auto z-10 absolute md:mt-0 mt-3 opacity-30" viewBox="0 0 800 1000">
                         <path
                             ref={pathRef}
                             d="M800 50 Q200 50 600 300 T0 640 "
@@ -170,7 +170,7 @@ export default function About() {
                     </div>
                     <div className="container mx-auto z-0 relative overflow-hidden w-full mt-5  group">
                         <div className="relative w-full bg-stone-100 overflow-hidden" style={{ transform: "scale(1.04786)" }}>
-                            <Image alt="Rasya sitting" width="2200" height="2500" decoding="async" data-nimg="1" className="w-full h-auto object-cover" src="/images/fd.png" style={{ color: " transparent" }} />
+                            <Image alt="Rasya sitting" width="2200" height="2500" decoding="async" data-nimg="1" className="w-full h-auto object-cover" src="/images/Desain tanpa judul (2).png" style={{ color: " transparent" }} />
                         </div>
                     </div>
                 </div>
