@@ -80,8 +80,8 @@ export default function About() {
                 },
             }).fromTo(
                 elementRef.current,
-                { y: isMobile ? 150 : 300 },
-                { y: isMobile ? 50 : 100, ease: "none" }
+                { y: isMobile ? 100 : 300 },
+                { y: isMobile ? 0 : 100, ease: "none" }
             );
 
             gsap.timeline({
